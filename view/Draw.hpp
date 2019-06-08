@@ -11,6 +11,7 @@ class Draw {
 	~Draw(void);
 	void	draw(int y, int x, const chtype);
 	void	input(void);
+	chtype	getCh();
 	private:
 	WINDOW*	_window;
 	chtype	_ch;

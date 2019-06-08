@@ -35,3 +35,7 @@ void	Draw::draw(int y, int x, chtype const ch) {
 void	Draw::input(void) {
 	this->_ch = getch();
 }
+
+chtype	Draw::getCh(void) {
+	return(this->_ch);
+}
