@@ -22,6 +22,7 @@ class Laser{
     void display();
 
     private:
+    bool onScreen;
     View * view;
     int xLoc, yLoc, xMax, yMax;//contain player location
     char character; //player

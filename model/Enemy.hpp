@@ -20,14 +20,14 @@ class Enemy{
     void mvup();
     void mvdown();
     void mvleft();
-    void mvright();
     int	 getmv(chtype choice);
     void display();
 
     private:
     View * view;
     int xLoc, yLoc, xMax, yMax;//contain player location
-    char character; //player
+    char character; //enemy character
+    bool isAlive; //this tells us if the unit is alive or dead
 
 };
 #endif
