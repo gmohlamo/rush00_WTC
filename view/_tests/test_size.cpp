@@ -1,12 +1,12 @@
-#include "Draw.hpp"
+#include "View.hpp"
 
 int	main(void) {
-	Draw drawer;
+	View view;
 	move(0, 0);
 	printw("Type something");
 	refresh();
-	drawer.input();
-	drawer.draw(5, 0, drawer.getCh());
-	drawer.input();
+	view.input();
+	view.render(5, 0, view.getCh());
+	view.input();
 	return(0);
 }
