@@ -1,6 +1,6 @@
-#include "Draw.hpp"
+#include "View.hpp"
 
-Draw::Draw(void) {
+View::View(void) {
 	initscr(); //initialize terminal curses mode
 	//cbreak();
 	raw(); //See the man on this function. It prevents the tty driver from buffering typed
@@ -11,31 +11,39 @@ Draw::Draw(void) {
 	this->_window = newwin(this->_windowVert, this->_windowHor, 0, 0); //allocate memory and gather information on the window.
 }
 
-Draw::~Draw(void) {
+View::~View(void) {
 	endwin();
 }
 
-Draw::Draw(Draw const & obj) {
+View::View(View const & obj) {
 	*this = obj;
 }
 
-Draw	&	Draw::operator = (Draw const &){
-	return (*this);
+View	const &	View::operator = (View const & operand) const{
+	return (operand);
 }
 
-void	Draw::_moveCursor(int y, int x) {
+int	View::getMaxY(void) const {
+	return(this->_windowVert);
+}
+
+int	View::getMaxX(void) const {
+	return(this->_windowHor);
+}
+
+void	View::_moveCursor(int y, int x) {
 	move(y, x);
 }
 
-void	Draw::draw(int y, int x, chtype const ch) {
+void	View::render(int y, int x, chtype const ch) {
 	move(y, x);
 	addch(ch);
 }
 
-void	Draw::input(void) {
+void	View::input(void) {
 	this->_ch = getch();
 }
 
-chtype	Draw::getCh(void) {
+chtype	View::getCh(void) {
 	return(this->_ch);
 }
