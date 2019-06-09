@@ -1,73 +1,78 @@
-#include "enemy.hpp"
+#include "Enemy.hpp"
 
-Enemy::Enemy(WINDOW *win, int y,int x,char c) //pass window we working on  y and  x value we will start on and character player 
+Enemy::Enemy(){}
+
+Enemy::~Enemy(){}
+
+Enemy::Enemy(WINDOW * win, int y, int x, char c)
 {
-    curwin = win;//capture window in
-    yLoc =y; // y location in win
-    xLoc = x;
-    getmaxyx(curwin,yMax,xMax);//
-    keypad(curwin,true);//arrow keys use
+    curwin = win;
+    yloc = y;
+    xloc = x;
+    xmax = getmaxx(win);
+    ymax = getmaxy(win);
+    getmaxyx(curwin, ymax, xmax);
+    keypad(curwin, true);
     character = c;
 }
 
-void Enemy::mvup()
+int    Enemy::mv()
 {
-    //substract from y location
-    mvwaddch(curwin, yLoc, xLoc, ' ');
-    yLoc--;
-    if(yLoc < 1) 
-    yLoc = 1;
-}
+    mvwaddch(curwin, yloc, xloc, ' ');
+    static int y = 1;
+    static int x = 1;
 
-void Enemy::mvdown()
-{
-    // mvwaddch(curwin, yLoc, xLoc, ' ');
-    yLoc++;
-    if(yLoc >yMax-2) 
-    yLoc = yMax -2;
-}
-
-void Enemy::mvright()
-{
-    // mvwaddch(curwin, yLoc, xLoc, ' ');
-    xLoc++;
-    if(xLoc > xMax-2)
-    xLoc= xMax -2;
-}
-
-void Enemy::mvleft()
-{
-    mvwaddch(curwin, yLoc, xLoc, ' ');
-    xLoc--;
-    if(xLoc < 1)
-    xLoc= 1;
-
-}
-
-int Enemy::getmv()
-{
-    int choice = wgetch(curwin);
-    switch(choice)
+    if (y == 1)
     {
-     case KEY_UP:
-        mvup();
-        break; 
-     case KEY_DOWN:
-        mvdown();
-        break; 
-     case KEY_LEFT:
-        mvleft();
-        break; 
-     case KEY_RIGHT:
-        mvright();
-        break;
-    default:
-        break;
+        yloc++;
+        if (yloc > ymax - 2)
+        {
+            yloc--;
+            y = -1;
+        }
     }
-    return choice;
+    else
+    {
+        yloc--;
+        if (yloc < 1)
+        {
+            yloc++;
+            y = 1;
+        }
+    }
+
+    if (x == 1)
+    {
+        xloc++;
+        if (xloc > xmax - 2)
+        {
+            xloc--;
+            x = -1;
+        }
+    }
+    else
+    {
+        xloc--;
+        if (xloc < 1)
+        {
+            xloc++;
+            x = 1;
+        }
+    }
+    return (1);
 }
 
-void Enemy::display()
+void    Enemy::display()
 {
-    mvwaddch(curwin, yLoc, xLoc, character);
+    mvwaddch(curwin, yloc, xloc, character);
+}
+
+int     Enemy::getxloc()
+{
+    return (xloc);
+}
+
+int     Enemy::getyloc()
+{
+    return (yloc);
 }
