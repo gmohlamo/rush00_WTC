@@ -1,5 +1,10 @@
 #include "player.hpp"
 
+
+Player::Player(){}
+
+Player::~Player(){}
+
 Player::Player(WINDOW *win, int y,int x,char c) //pass window we working on  y and  x value we will start on and character player 
 {
     curwin = win;//capture window in
@@ -44,6 +49,16 @@ void Player::mvleft()
 
 }
 
+int     Player::getxloc()
+{
+    return (xloc);
+}
+
+int     Player::getyloc()
+{
+    return (yloc);
+}
+
 int Player::getmv()
 {
     int choice = wgetch(curwin);
@@ -65,6 +80,25 @@ int Player::getmv()
         break;
     }
     return choice;
+}
+
+int     Player::fire(int y, int x)
+{
+    int i;
+
+    i = xloc++;
+    {
+        mvwaddch(curwin, yloc, i, '-');
+        if (y == yloc && i == x)
+            return (-1);
+        
+        i++;
+        halfdelay(300);
+        //mvwaddch(curwin, yloc, i - 1, ' ');
+    }
+    return (1);
+    // return (yloc);
+
 }
 
 void Player::display()

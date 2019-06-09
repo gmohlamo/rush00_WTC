@@ -6,22 +6,24 @@
 #include <string>
 #include <ctime>
 
-class Enemy{
-
+class Enemy
+{
     public:
-    Enemy(WINDOW * win, int y, int x, char c);
+       Enemy();
+       ~Enemy();
+       Enemy(WINDOW * win, int y, int x, char c); 
 
-    void mvup();
-    void mvdown();
-    void mvleft();
-    void mvright();
-    int getmv();
-    void display();
+       int  mv();
+       void display();
+       int  getyloc();
+       int  getxloc();
 
     private:
-    int xLoc, yLoc, xMax, yMax;//contain player location
-    char character; //player
-    WINDOW * curwin; //current window
-
+        int     xloc;
+        int     yloc;
+        int     xmax;
+        int     ymax;
+        char    character;
+        WINDOW  *curwin;
 };
 #endif
