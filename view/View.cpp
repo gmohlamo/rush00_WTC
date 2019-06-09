@@ -10,9 +10,9 @@ View::View(void) {
 	noecho(); //prevent keys being entered from being echoed to the screen
 	keypad(stdscr, TRUE); //enable keyboard event capturing
 	getmaxyx(stdscr, this->_windowVert, this->_windowHor); //get thew maximum width and height values for the game.
-	curs_set(FALSE); //prevent the cursor from being displayed
-	box(this->_window, 0, 0); //create a box around the window
+	//curs_set(FALSE); //prevent the cursor from being displayed
 	this->_window = newwin(this->_windowVert, this->_windowHor, 0, 0); //allocate memory and gather information on the window.
+	box(this->_window, 0, 0); //create a box around the window
 }
 
 View::~View(void) {
