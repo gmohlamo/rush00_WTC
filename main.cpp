@@ -1,6 +1,8 @@
-#include "./view/View.hpp"
+#include "view/View.hpp"
+#include "model/Game.hpp"
 
 int		main(void) {
-	View	view;
+	Game	game;
+	game.Play();
 	return(0);
 }
