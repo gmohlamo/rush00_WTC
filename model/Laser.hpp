@@ -6,11 +6,18 @@
 #include <string>
 #include <ctime>
 #include "../view/View.hpp"
+#include "Player.hpp"
+#include "Enemy.hpp"
+#define DEFAULT_LASER '-'
+#define LEFT 1
+#define RIGHT 2
+#define	ERROR 0
 
 class Laser{
 
     public:
-    Laser(View * view, char c);
+    Laser(View * view, Player * owner, char c);
+    Laser(View * view, Enemy * owner, char c);
     Laser(Laser const & player);
     Laser(void);
     Laser & operator = (Laser const & player);
@@ -18,12 +25,14 @@ class Laser{
 
     void mvleft();
     void mvright();
-    int getmv();
     void display();
 
     private:
+    int	direction;
     bool onScreen;
     View * view;
+    Player * p_owner;
+    Enemy * e_owner;
     int xLoc, yLoc, xMax, yMax;//contain player location
     char character; //player
 

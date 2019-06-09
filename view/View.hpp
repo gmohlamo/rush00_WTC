@@ -11,6 +11,7 @@ class View {
 	View const & operator = (View const &) const;
 	~View(void);
 	void	render(int y, int x, const chtype);
+	void	update(void);
 	void	input(void);
 	chtype	getCh(void);
 	int	getMaxY(void) const;

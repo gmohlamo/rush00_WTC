@@ -20,7 +20,6 @@ class Enemy{
     void mvup();
     void mvdown();
     void mvleft();
-    int	 getmv(chtype choice);
     void display();
 
     private:

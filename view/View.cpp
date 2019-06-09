@@ -13,6 +13,7 @@ View::View(void) {
 	//curs_set(FALSE); //prevent the cursor from being displayed
 	this->_window = newwin(this->_windowVert, this->_windowHor, 0, 0); //allocate memory and gather information on the window.
 	box(this->_window, 0, 0); //create a box around the window
+	wtimeout(this->_window, 1500); //wait for user input but return ERR should the user fail to give any input
 }
 
 View::~View(void) {
@@ -46,6 +47,10 @@ void	View::render(int y, int x, chtype const ch) {
 
 void	View::input(void) {
 	this->_ch = getch();
+}
+
+void	View::update(void) {
+	refresh();
 }
 
 chtype	View::getCh(void) {

@@ -16,7 +16,6 @@ Enemy::Enemy(Enemy const & enemy) {
 void Enemy::mvup()
 {
     this->view->render(this->yLoc, this->xLoc, ' ');
-    //substract from y location
     this->yLoc--;
     if(yLoc < 1) 
     yLoc = 1;
@@ -39,9 +38,7 @@ void Enemy::mvleft()
 
 }
 
-int Enemy::getmv(chtype choice)
-{
-	return(choice);
+void Enemy::shoot() {
 }
 
 void Enemy::display()
