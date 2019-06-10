@@ -14,8 +14,8 @@ View::View(void) {
 	getmaxyx(stdscr, this->_windowVert, this->_windowHor); //get thew maximum width and height values for the game.
 	//std::cout << this->_windowVert << " vertical." << std::endl << this->_windowHor << std::endl;
 	//exit(0);
-	this->_window = newwin(this->_windowVert - 2, this->_windowHor - 2, 1, 1); //allocate memory and gather information on the window.
-	box(this->_window, 0, 0); //create a box around the window
+	this->_window = newwin(this->_windowVert / 2, this->_windowHor / 2, 20, 10); //allocate memory and gather information on the window.
+	//box(this->_window, 0, 0); //create a box around the window
 	curs_set(false); //prevent the cursor from being displayed
 	//wtimeout(this->_window, 1500); //wait for user input but return ERR should the user fail to give any input
 	keypad(this->getWindow(), true); //enable keyboard event capturing

@@ -9,14 +9,16 @@
 #include <iostream>
 
 #define LASERS 4096
-#define ENEMIES 2
+#define ENEMIES 32
 
 class Game {
 	public:
 	Game(void);
+	Game(View *view);
 	Game(Game const &);
 	Game const & operator = (Game const & rhs) const;
 	~Game(void);
+	void	checkCollide(void);
 	void	Play(void);
 	void	updateLasers(int pos);
 	void	updateEnemies(int pos);

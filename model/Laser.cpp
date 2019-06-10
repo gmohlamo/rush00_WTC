@@ -1,4 +1,5 @@
 #include"./Laser.hpp"
+#include <unistd.h>
 
 Laser::Laser(View *view, Player * owner, char c) {
 	this->character = c;
@@ -37,15 +38,17 @@ Laser::~Laser(void) {
 }
 
 void	Laser::mvleft(void) {
+	mvwaddch(this->view->getWindow(), this->yLoc, this->xLoc, ' ');
 	this->xLoc--;
 }
 
 void	Laser::mvright(void) {
+	mvwaddch(this->view->getWindow(), this->yLoc, this->xLoc, ' ');
 	this->xLoc++;
 }
 
 void	Laser::display() {
-	this->view->render(this->yLoc, this->xLoc, this->character);
+	mvwaddch(this->view->getWindow(), this->yLoc, this->xLoc, '-');
 }
 
 int	Laser::getxloc(void) {
@@ -57,7 +60,7 @@ int	Laser::getyloc(void) {
 }
 
 void	Laser::mv(void) {
-	if (this->p_owner) {
+	if (this->p_owner != NULL) {
 		this->mvright();
 	} else {
 		this->mvleft();

@@ -28,6 +28,7 @@ Player::~Player(void) {
 
 void Player::mvup()
 {
+    mvwaddch(this->view->getWindow(), this->yLoc, this->xLoc, ' ');
     //substract from y location
     yLoc--;
     if(yLoc < 1) 
@@ -36,6 +37,7 @@ void Player::mvup()
 
 void Player::mvdown()
 {
+    mvwaddch(this->view->getWindow(), this->yLoc, this->xLoc, ' ');
     yLoc++;
     if(yLoc >yMax-2) 
     yLoc = yMax -2;
@@ -43,6 +45,7 @@ void Player::mvdown()
 
 void Player::mvright()
 {
+    mvwaddch(this->view->getWindow(), this->yLoc, this->xLoc, ' ');
     xLoc++;
     if(xLoc > xMax-2)
     xLoc= xMax -2;
@@ -50,6 +53,7 @@ void Player::mvright()
 
 void Player::mvleft()
 {
+    mvwaddch(this->view->getWindow(), this->yLoc, this->xLoc, ' ');
     xLoc--;
     if(xLoc < 1)
     xLoc= 1;

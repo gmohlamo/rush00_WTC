@@ -2,9 +2,10 @@
 #include "model/Game.hpp"
 
 int		main(void) {
-	Game	game;
-	while (true) {
-		game.Play();
-	}
+	View	*view = new View();
+	Game	*game = new Game(view);
+	while (true)
+		game->Play();
+	//delete game;
 	return(0);
 }
