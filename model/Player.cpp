@@ -1,20 +1,33 @@
-#include "Player.hpp"
+#include "./Player.hpp"
+#include <unistd.h>
+#include <stdlib.h>
+#include <iostream>
 
-Player::Player(View * view,char c) //pass window we working on  y and  x value we will start on and character player 
+Player::Player(View * view, char c) //pass window we working on  y and  x value we will start on and character player 
 {
-    yLoc =view->getMaxY() / 2; // y location in win
-    xLoc = 0;
-    character = c;
+    this->yLoc = 1; // y location in win
+    this->xLoc = 1;
+    this->character = c;
     this->view = view;
+    getmaxyx(this->view->getWindow(), this->yMax, this->xMax);
 }
 
 Player::Player(Player const & player) {
 	*this = player;
 }
 
+Player const & Player::operator=(Player const & rhs) const {
+	return(rhs);
+}
+
+Player::Player(void) {
+}
+
+Player::~Player(void) {
+}
+
 void Player::mvup()
 {
-    this->view->render(this->yLoc, this->xLoc, ' ');
     //substract from y location
     yLoc--;
     if(yLoc < 1) 
@@ -23,7 +36,6 @@ void Player::mvup()
 
 void Player::mvdown()
 {
-    this->view->render(this->yLoc, this->xLoc, ' ');
     yLoc++;
     if(yLoc >yMax-2) 
     yLoc = yMax -2;
@@ -31,7 +43,6 @@ void Player::mvdown()
 
 void Player::mvright()
 {
-    this->view->render(this->yLoc, this->xLoc, ' ');
     xLoc++;
     if(xLoc > xMax-2)
     xLoc= xMax -2;
@@ -39,16 +50,23 @@ void Player::mvright()
 
 void Player::mvleft()
 {
-    this->view->render(this->yLoc, this->xLoc, ' ');
     xLoc--;
     if(xLoc < 1)
     xLoc= 1;
 
 }
 
+int Player::getxloc(void) {
+	return (this->xLoc);
+}
+
+int Player::getyloc(void) {
+	return (this->yLoc);
+}
+
 int Player::getmv()
 {
-    int	choice = this->view->getCh();
+    int	choice = wgetch(this->view->getWindow());
     switch(choice)
     {
      case KEY_UP:
@@ -66,10 +84,14 @@ int Player::getmv()
     default:
         break;
     }
+    this->display();
     return choice;
 }
 
 void Player::display()
 {
-    this->view->render(this->yLoc, this->xLoc, character);
+    mvwaddch(this->view->getWindow(), this->yLoc, this->xLoc, '>');
+    //waddch(this->view->getWindow(), '>');
+    //exit(0);
+    //this->view->render(this->yLoc, this->xLoc, character);
 }

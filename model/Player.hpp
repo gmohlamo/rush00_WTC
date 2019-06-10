@@ -13,8 +13,11 @@ class Player{
     Player(View * view, char c);
     Player(Player const & player);
     Player(void);
-    Player & operator = (Player const & player);
+    Player const & operator = (Player const & player) const;
     ~Player(void);
+
+    int  getxloc(void);
+    int  getyloc(void);
 
     void shoot();
     void mvup();

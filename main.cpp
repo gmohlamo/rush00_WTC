@@ -3,6 +3,8 @@
 
 int		main(void) {
 	Game	game;
-	game.Play();
+	while (true) {
+		game.Play();
+	}
 	return(0);
 }

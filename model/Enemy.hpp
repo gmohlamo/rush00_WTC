@@ -13,15 +13,18 @@ class Enemy{
     Enemy(View * view, char c);
     Enemy(Enemy const & player);
     Enemy(void);
-    Enemy & operator = (Enemy const & player);
+    Enemy const & operator = (Enemy const & rhs) const;
     ~Enemy(void);
 
     void shoot();
     void mvup();
     void mvdown();
     void mvleft();
+    void mv(); //generally move the enemy towards the player's side of the game
+    int getxloc();
+    int getyloc();
     void display();
-
+    //Enemy will be killed and instantiated by the game
     private:
     View * view;
     int xLoc, yLoc, xMax, yMax;//contain player location

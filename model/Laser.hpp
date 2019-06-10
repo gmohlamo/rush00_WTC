@@ -6,8 +6,8 @@
 #include <string>
 #include <ctime>
 #include "../view/View.hpp"
-#include "Player.hpp"
-#include "Enemy.hpp"
+#include "./Player.hpp"
+#include "./Enemy.hpp"
 #define DEFAULT_LASER '-'
 #define LEFT 1
 #define RIGHT 2
@@ -20,12 +20,16 @@ class Laser{
     Laser(View * view, Enemy * owner, char c);
     Laser(Laser const & player);
     Laser(void);
-    Laser & operator = (Laser const & player);
+    Laser const & operator = (Laser const & player) const;
     ~Laser(void);
 
     void mvleft();
     void mvright();
+    void shoot();
     void display();
+    int  getxloc(void);
+    int  getyloc(void);
+    void mv();
 
     private:
     int	direction;

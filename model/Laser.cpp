@@ -1,4 +1,4 @@
-#include"Laser.hpp"
+#include"./Laser.hpp"
 
 Laser::Laser(View *view, Player * owner, char c) {
 	this->character = c;
@@ -6,6 +6,8 @@ Laser::Laser(View *view, Player * owner, char c) {
 	this->p_owner = owner;
 	this->e_owner = NULL;
 	this->direction = RIGHT;
+	this->xLoc = owner->getxloc();
+	this->yLoc = owner->getyloc();
 }
 
 Laser::Laser(View *view, Enemy * owner, char c) {
@@ -21,6 +23,10 @@ Laser::Laser(void) {
 	this->e_owner = NULL;
 	this->e_owner = NULL;
 	this->direction = ERROR;
+}
+
+Laser const & Laser::operator = (Laser const & rhs) const {
+	return(rhs);
 }
 
 Laser::Laser(Laser const & lsr){
@@ -40,4 +46,21 @@ void	Laser::mvright(void) {
 
 void	Laser::display() {
 	this->view->render(this->yLoc, this->xLoc, this->character);
+}
+
+int	Laser::getxloc(void) {
+	return(this->xLoc);
+}
+
+int	Laser::getyloc(void) {
+	return(this->yLoc);
+}
+
+void	Laser::mv(void) {
+	if (this->p_owner) {
+		this->mvright();
+	} else {
+		this->mvleft();
+	}
+	this->display();
 }

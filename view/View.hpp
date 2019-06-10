@@ -12,7 +12,7 @@ class View {
 	~View(void);
 	void	render(int y, int x, const chtype);
 	void	update(void);
-	void	input(void);
+	WINDOW	*getWindow(void);
 	chtype	getCh(void);
 	int	getMaxY(void) const;
 	int	getMaxX(void) const;
@@ -22,6 +22,7 @@ class View {
 	int	_windowVert;
 	int	_windowHor;
 	void	_moveCursor(int y, int x);
+	void	_input(void);
 };
 
 #endif
